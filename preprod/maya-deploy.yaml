@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-maya-io
+  namespace: default
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: crb-maya-io
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: sa-maya-io
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: maya
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app : maya
+    spec:
+      serviceAccountName: sa-maya-io
+      securityContext:
+        fsGroup: 106
+      initContainers:
+      - name: volume-mount-hack
+        image: busybox
+        command: ["sh", "-c", "rm -rf /var/lib/mysql/lost+found"]
+        volumeMounts:
+        - name: maya-database
+          mountPath: /var/lib/mysql
+      containers:
+        - name: maya
+          image: index.docker.io/mayadataio/maya-io-server:alpha-r3-1521478273
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+          volumeMounts:
+          - name: maya-database
+            mountPath: /var/lib/mysql
+          - name: maya-store
+            mountPath: /mayastore
+          - name: maya-config
+            mountPath: /var/lib/cattle/etc/maya.properties
+            subPath: maya.properties
+      imagePullSecrets:
+      - name: mayadatasecret
+      volumes:
+      - name: maya-database
+        gcePersistentDisk:
+          pdName: preprod-mysql-disk2 
+          # in the gke, the disk should already be created in the cluster using the following command
+          # gcloud compute disks create --size 200GB maya-prod-disk
+          fsType: ext4
+      - name: maya-store
+        gcePersistentDisk:
+          pdName: preprod-maya-store-disk2
+          # in the gke, the disk should already be created in the cluster using the following command
+          # gcloud compute disks create --size 2GB maya-store-disk
+          fsType: ext4
+      - name: maya-config
+        configMap:
+          name: maya-config

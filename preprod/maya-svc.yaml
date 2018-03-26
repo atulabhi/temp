@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: maya
+  name: maya-service
+spec:
+  type: NodePort
+  ports:
+  - name: mayaport
+    port: 8080
+    protocol: TCP
+  selector:
+    app: maya

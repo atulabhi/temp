@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: maya-mulebot
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app : chat-server
+    spec:
+      containers:
+        - name: chat-server
+          image: mayadataio/maya-chatops:alpha-r3-f7db242
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+          env:
+           - name: ADMIN_API_KEY
+             value: "MkQyRjZEMEExODc0ODBFODdCMEI6YjdHTWJrM1NDREtYNUZ3RmlRMUtVRWR4UU5oOW1OWWVuOWZvRDdWaA=="
+           - name: VERIFICATION_TOKEN
+             value: "3o0gLCz8xwhh04C7aB4JRp4A"
+           - name: MAYA_SERVER_IP
+             value: "https://preprod-app.mayaonline.io/v3/"
+           - name: SLASH_COMMAND
+             value: "/mayapreprod"
+      imagePullSecrets:
+        - name: mayadatasecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: chat-server
+  name: mule-bot-service
+spec:
+  type: NodePort
+  ports:
+  - name: chat-server
+    port: 8080
+    nodePort: 30550
+    protocol: TCP
+  selector:
+    app: chat-server

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: maya-config
+data:
+  maya.properties: |
+    api.ui.index=https://preprod-app.mayaonline.io/ui/latest
+    server.default.access.grant=true
+    maya.api.ui.enabled=true
+    api.auth.enabler=github_user:33745191
+    api.auth.github.client.id=f4894b3dad68a3aa23e4
+    api.auth.github.client.secret=43faf0bebb3b6774105cd61fbfb7b604d281e9cd
+    no.reply.email.address=no-reply@mayadata.io
+    no.reply.email.password=##maya%%
+    slack.config.bot.client.id=227727824192.333731651105
+    slack.config.bot.client.secret=4ee0c29342c5c24f00be3ecc12975abb
+    slack.config.bot.oauth.url= https://slack.com/oauth/authorize?client_id=227727824192.333731651105&scope=bot\,incoming-webhook\,commands
+    mayaUrl=https://preprod-app.mayaonline.io
+    maya.ingress.gke=/mayastore/maya-ingress-gke.yaml
+    maya.ingress.auth=/mayastore/auth
+    maya.cortex.push.url=https://preprod-app.mayaonline.io/maya-cortex-push/api/prom/push
+    maya.cortex.pull.url=https://preprod-app.mayaonline.io/maya-cortex-pull/api/prom
+    maya.cortex.configs.url=https://preprod-app.mayaonline.io/maya-cortex-configs/api/prom/configs/rules
+    maya.cortex.am.url=https://preprod-app.mayaonline.io/maya-cortex-am/api/prom/alertmanager/
+    maya.grafana.url=http://maya-grafana-service.default.svc.cluster.local:3000/
+    maya.grafana.admin.password=admin
+    mulebot.alert.url=https://preprod-app.mayaonline.io/chat-server/maya-events
