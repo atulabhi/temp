@@ -18,7 +18,7 @@ pipeline {
               steps {
                  git branch: 'master',
                  credentialsId: 'github',
-                 url: 'ssh://git@gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git'
+                 url: 'https://gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git'
 
             sh "ls -lat"
         }
