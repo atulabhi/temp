@@ -53,6 +53,7 @@ pipeline {
                         sh "cp -r ../yaml ."
                         sh "pwd"
                        sh "ls -a"
+                       cleanWs deleteDirs: true
                     }
                 }
             }
