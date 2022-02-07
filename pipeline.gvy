@@ -14,18 +14,27 @@ pipeline {
     }
 
     stages {
+            stage('Checkout external proj') {
+              steps {
+                 git branch: 'master',
+                 credentialsId: 'github',
+                 url: 'ssh://git@gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git'
+
+            sh "ls -lat"
+        }
+    }
         stage('Scan') {
             steps {
                 script {
 
                     checkout scm
-                    dir('atulabhi/temp/') {
-                         withCredentials([file(credentialsId: 'github', variable: 'github'),file(credentialsId: 'github', variable: 'pass')]) {
-                            git url: "https://${github}:${pass}@gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git"
+                    // dir('atulabhi/temp/') {
+                    //      withCredentials([file(credentialsId: 'github', variable: 'github'),file(credentialsId: 'github', variable: 'pass')]) {
+                    //         git url: "https://${github}:${pass}@gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git"
 
-                            sh "pwd"
-                            sh "ls -a"
-                        }
+                    //         sh "pwd"
+                    //         sh "ls -a"
+                    //     }
                         sh "./scan.sh"
                         sh "ls -a"
                     }
