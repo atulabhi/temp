@@ -22,7 +22,7 @@ pipeline {
                 checkout([
                     //For details https://www.cnblogs.com/liucx/
                     $class: 'GitSCM', branches: [[name: "main"]],
-                    doGenerateSubmoduleConfigurations: false,extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:false,reference:'',shallow:false,timeout:30]], submoduleCfg: [],
+                    doGenerateSubmoduleConfigurations: false,extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:true,reference:'',shallow:true,timeout:30]], submoduleCfg: [],
                     userRemoteConfigs: [[credentialsId: 'githubid', url: "https://gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git"]]
                 ])
 
