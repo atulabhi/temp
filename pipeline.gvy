@@ -14,7 +14,7 @@ pipeline {
     }
 
     stages {
-            stage('Checkout external proj') {
+        stage('Checkout external proj') {
               steps {
                  git branch: 'master',
                  credentialsId: 'github',
