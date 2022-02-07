@@ -29,7 +29,7 @@ pipeline {
             sh "ls -lat"
             sh "pwd"
             sh"""
-            rm -rf ../yamls
+            rm -rf ../yaml
             mkdir -p ../yaml 
             cp -r ./ ../yaml
             ls -lat ../yaml
