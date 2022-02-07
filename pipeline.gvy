@@ -8,7 +8,7 @@ pipeline {
     }
 
     options {
-        //skipDefaultCheckout true
+        skipDefaultCheckout true
         buildDiscarder(logRotator(numToKeepStr: '30'))
         timeout(time: 360, unit: 'MINUTES')
     }
