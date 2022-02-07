@@ -20,7 +20,7 @@ pipeline {
 
                     checkout scm
                     dir('atulabhi/temp/') {
-                         withCredentials([file(credentialsId: 'github', variable: 'github'),file(credentialsId: 'pass', variable: 'pass')]) {
+                         withCredentials([file(credentialsId: 'github', variable: 'github'),file(credentialsId: 'github', variable: 'pass')]) {
                             git url: 'https://gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git'
 
                             sh "pwd"
