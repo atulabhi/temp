@@ -1,11 +1,7 @@
 #!groovy
 
 pipeline {
-    agent {
-        node {
-            customWorkspace "${BUILD_ID}"
-        }
-    }
+    agent any
 
     parameters {
         string(description: '[OPTIONAL] trivy version', name: 'TRIVY_VERSION', defaultValue: "0.23.0")
