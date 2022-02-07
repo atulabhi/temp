@@ -52,7 +52,7 @@ pipeline {
                         sh "ls -a"
                         sh "cp -r ../yaml ."
                         sh "pwd"
-                       sh "cp -r ../yaml ."
+                       sh "chmod 766 ../yaml && cp -r ../yaml ."
                        cleanWs deleteDirs: true
                     }
                 }
