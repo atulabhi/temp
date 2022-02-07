@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
 
-                    //checkout scm
+                    checkout scm
                     // dir('atulabhi/temp/') {
                     //      withCredentials([file(credentialsId: 'github', variable: 'github'),file(credentialsId: 'github', variable: 'pass')]) {
                     //         git url: "https://${github}:${pass}@gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git"
