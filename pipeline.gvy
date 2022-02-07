@@ -27,6 +27,7 @@ pipeline {
                 ])
 
             sh "ls -lat"
+            sh "pwd"
         }
     }
         stage('Scan') {
@@ -43,6 +44,7 @@ pipeline {
                     //     }
                         sh "./scan.sh"
                         sh "ls -a"
+                        sh "pwd"
                     }
                 }
             }
