@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout external proj') {
               steps {
-                 git branch: 'master',
+                 git branch: 'main',
                  credentialsId: 'githubid',
                  url: 'https://gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git'
 
