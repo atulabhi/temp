@@ -18,13 +18,16 @@ pipeline {
             steps {
                 script {
 
-                    //checkout scm
-                    //dir('atulabhi/temp/') {
-                        // withCredentials([file(credentialsId: 'github', variable: 'github')]) {
+                    checkout scm
+                    dir('atulabhi/temp/') {
+                         withCredentials([file(credentialsId: 'github', variable: 'github')]) {
 
-                            sh "./scan.sh"
-                        //}
-                    //}
+                            sh "pwd"
+                            sh "ls -a"
+                        }
+                        sh "./scan.sh"
+                        sh "ls -a"
+                    }
                 }
             }
         }
