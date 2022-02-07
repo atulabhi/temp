@@ -8,7 +8,7 @@ pipeline {
     }
 
     options {
-        skipDefaultCheckout true
+        //skipDefaultCheckout true
         buildDiscarder(logRotator(numToKeepStr: '30'))
         timeout(time: 360, unit: 'MINUTES')
     }
@@ -18,13 +18,13 @@ pipeline {
             steps {
                 script {
 
-                    checkout scm
-                    dir('atulabhi/temp/') {
+                    //checkout scm
+                    //dir('atulabhi/temp/') {
                         // withCredentials([file(credentialsId: 'github', variable: 'github')]) {
 
                             sh "./scan.sh"
                         //}
-                    }
+                    //}
                 }
             }
         }
