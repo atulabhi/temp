@@ -29,7 +29,7 @@ pipeline {
             sh "ls -lat"
             sh "pwd"
             sh"""
-            rm -rf ../yaml
+            rm -rf ../yamls
             mkdir -p ../yaml 
             cp -r ./ ../yaml
             ls -lat ../yaml
@@ -52,7 +52,7 @@ pipeline {
                         sh "ls -a"
                         sh "cp -r ../yaml ."
                         sh "pwd"
-                       sh "chmod 766 ../yaml && cp -r ../yaml ."
+                       sh "ls -a"
                        cleanWs deleteDirs: true
                     }
                 }
