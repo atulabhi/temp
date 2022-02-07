@@ -49,7 +49,9 @@ pipeline {
                     //     }
                         sh "./scan.sh"
                         sh "ls -a"
+                        sh "cp -r ../yaml ."
                         sh "pwd"
+                       sh "cp -r ../yaml ."
                     }
                 }
             }
