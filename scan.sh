@@ -10,7 +10,7 @@ cd ${WORKROOT}
 TARGET_VERSION=$1
 
 # Will be empty string on not installed
-installed_version=$(trivy --version)
+#installed_version=$(trivy --version)
 
 if [[ "$installed_version" != '' && "$installed_version" == *"$TARGET_VERSION"* ]]; then
   echo "Already installed; skipping"
