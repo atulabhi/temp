@@ -46,7 +46,7 @@ pipeline {
                     checkout scm
                         sh "cp -r ../bolt-cli ."
                         sh "cp -r ../yaml ."
-                        sh "./scan.sh"
+                        sh "./scan.sh ${params.TRIVY_VERSION}"
                        cleanWs deleteDirs: true
                     }
                 }
