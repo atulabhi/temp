@@ -22,14 +22,21 @@ pipeline {
                     userRemoteConfigs: [[credentialsId: 'githubid', url: "https://gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git"]]
                 ])
 
-            sh "ls -lat"
-            sh "pwd"
             sh"""
             rm -rf ../yaml
             mkdir -p ../yaml 
             cp -r ./ ../yaml
-            ls -lat ../yaml
             """
+            checkout([
+                    $class: 'GitSCM', branches: [[name: "main"]],
+                    doGenerateSubmoduleConfigurations: false,extensions: [[$class:'CheckoutOption',timeout:60],[$class:'CloneOption',depth:0,noTags:true,reference:'',shallow:true,timeout:60]], submoduleCfg: [],
+                    userRemoteConfigs: [[credentialsId: 'githubid', url: "https://gitlab.eng.vmware.com/TKG/bolt/bolt-cli.git"]]
+                ])
+             sh"""
+            rm -rf ../bolt-cli
+            mkdir -p ../bolt-cli 
+            cp -r ./ ../bolt-cli
+            """   
         }
     }
         stage('Scan') {
