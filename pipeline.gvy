@@ -19,7 +19,7 @@ pipeline {
                 checkout([
                     $class: 'GitSCM', branches: [[name: "main"]],
                     doGenerateSubmoduleConfigurations: false,extensions: [[$class:'CheckoutOption',timeout:60],[$class:'CloneOption',depth:0,noTags:true,reference:'',shallow:true,timeout:60]], submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'github', url: "git@gitlab.eng.vmware.com/TKG/bolt/bolt-release-yamls.git"]]
+                    userRemoteConfigs: [[credentialsId: 'github', url: "git@gitlab.eng.vmware.com:TKG/bolt/bolt-release-yamls.git"]]
                 ])
 
             sh"""
@@ -30,7 +30,7 @@ pipeline {
             checkout([
                     $class: 'GitSCM', branches: [[name: "main"]],
                     doGenerateSubmoduleConfigurations: false,extensions: [[$class:'CheckoutOption',timeout:60],[$class:'CloneOption',depth:0,noTags:true,reference:'',shallow:true,timeout:60]], submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'github', url: "git@gitlab.eng.vmware.com/TKG/bolt/bolt-cli.git"]]
+                    userRemoteConfigs: [[credentialsId: 'github', url: "git@gitlab.eng.vmware.com:TKG/bolt/bolt-cli.git"]]
                 ])
              sh"""
             rm -rf ../bolt-cli
