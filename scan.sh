@@ -9,7 +9,7 @@ WORKROOT=$(pwd)
 cd ${WORKROOT}
 
 # unzip go environment
-go_env="go1.6.2.linux-amd64.tar.gz"
+go_env="go1.17.6.linux-amd64.tar.gz"
 wget -c https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
 tar -zxf $go_env
 if [ $? -ne 0 ];
