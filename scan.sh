@@ -14,7 +14,7 @@ installed_version=$(trivy --version)
 
 if [[ "$installed_version" != '' && "$installed_version" == *"$TARGET_VERSION"* ]]; then
   echo "Already installed; skipping"
-  exit 0
+  #exit 0
 fi
 
 #curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
@@ -46,6 +46,5 @@ cd bolt-cli
 # echo "OK for go build"
 
 make build
-
 
 ./bin/bolt scan-trivy --release tkg-1.4.0.yaml
