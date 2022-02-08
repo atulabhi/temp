@@ -26,7 +26,7 @@ export GOROOT=$(pwd)/go
 export GOPATH=$(pwd)
 
 # build
-cd path/to/your/project
+cd bolt-cli
 go build
 if [ $? -ne 0 ];
 then
@@ -34,7 +34,5 @@ then
     exit 1
 fi
 echo "OK for go build"
-
-cd bolt-cli
 
 make build
