@@ -48,4 +48,4 @@ cd bolt-cli
 make build
 
 
-#../bolt scan-trivy --release tkg-1.4.0.yaml
+./bin/bolt scan-trivy --release tkg-1.4.0.yaml
