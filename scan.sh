@@ -37,7 +37,7 @@ export GOROOT=$(pwd)/go
 export GOPATH=$(pwd)
 
 # build
-#cd bolt-cli
+cd bolt-cli
 # if [ $? -ne 0 ];
 # then
 #     echo "fail to go build"
@@ -45,7 +45,7 @@ export GOPATH=$(pwd)
 # fi
 # echo "OK for go build"
 
-#make build
+make build
 
 
-../bolt scan-trivy --release tkg-1.4.0.yaml
+#../bolt scan-trivy --release tkg-1.4.0.yaml
