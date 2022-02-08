@@ -9,7 +9,7 @@ WORKROOT=$(pwd)
 cd ${WORKROOT}
 TARGET_VERSION=$1
 
-Will be empty string on not installed
+#Will be empty string on not installed
 installed_version=$(trivy --version)
 
 if [[ "$installed_version" != '' && "$installed_version" == *"$TARGET_VERSION"* ]]; then
