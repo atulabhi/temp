@@ -44,11 +44,9 @@ pipeline {
                 script {
 
                     checkout scm
-                        sh "./scan.sh"
-                        sh "ls -a"
+                        sh "cp -r ../bolt-cli ."
                         sh "cp -r ../yaml ."
-                        sh "pwd"
-                       sh "ls -a"
+                        sh "./scan.sh"
                        cleanWs deleteDirs: true
                     }
                 }
